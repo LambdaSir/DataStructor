@@ -6,15 +6,15 @@ typedef struct LinkList{
 	ElemType data;
 	struct LinkList *next;
 }LinkList;
-void initList(LinkList *&head){   //³õÊ¼»¯Á´±í 
+void initList(LinkList *&head){   //åˆå§‹åŒ–é“¾è¡¨ 
 	head = new LinkList;
 	head->next=NULL;
 }
 
-LinkList *createList(LinkList *&head){	  //Î²²å·¨ 
+LinkList *createList(LinkList *&head){	  //å°¾æ’æ³• 
 	LinkList *temp=head,*ptr=head->next;
 	int n;
-	cout<<"ÇëÊäÈëÒª´´½¨¶àÉÙÔªËØ£º";
+	cout<<"è¯·è¾“å…¥è¦åˆ›å»ºå¤šå°‘å…ƒç´ ï¼š";
 	cin>>n;
 	for(int i=0;i<n;i++){
 		ptr=new LinkList;
@@ -25,7 +25,7 @@ LinkList *createList(LinkList *&head){	  //Î²²å·¨
 	temp->next=NULL;
 	return head;
 }
-void appendList(LinkList *&head,int data){     //ÔÚÎ²²¿×·¼Ó 
+void appendList(LinkList *&head,int data){     //åœ¨å°¾éƒ¨è¿½åŠ  
 	LinkList *ptr=head->next,*temp;
 	temp = new LinkList;
 	while(ptr->next!=NULL){
@@ -35,7 +35,7 @@ void appendList(LinkList *&head,int data){     //ÔÚÎ²²¿×·¼Ó
 	temp->data=data;
 	temp->next=NULL;
 }
-void showList(LinkList *&head){     //Êä³öÁ´±í 
+void showList(LinkList *&head){     //è¾“å‡ºé“¾è¡¨ 
 	LinkList *ptr=head->next;
 	while(ptr){
 		cout<<ptr->data<<"  ";
@@ -43,13 +43,13 @@ void showList(LinkList *&head){     //Êä³öÁ´±í
 	}
 	cout<<endl;
 }
-bool isEmpty(LinkList *&head){      //ÅĞ¶ÏÊÇ·ñÎª¿Õ 
+bool isEmpty(LinkList *&head){      //åˆ¤æ–­æ˜¯å¦ä¸ºç©º 
 	return (head->next==NULL);
 }
-bool inseartList(LinkList *&head,int data){     //ÔÚÁ´±íÖĞ²åÈëÊı¾İ 
+bool inseartList(LinkList *&head,int data){     //åœ¨é“¾è¡¨ä¸­æ’å…¥æ•°æ® 
 	LinkList *ptr=head->next,*Node;
 	int n;
-	cout<<endl<<"ÇëÊäÈëÒªÔÚÄÇÎ»ÊıºóÃæ²åÈë£º";
+	cout<<endl<<"è¯·è¾“å…¥è¦åœ¨é‚£ä½æ•°åé¢æ’å…¥ï¼š";
 	cin>>n; 
 	while(ptr){
 		if(n==ptr->data){
@@ -57,44 +57,44 @@ bool inseartList(LinkList *&head,int data){     //ÔÚÁ´±íÖĞ²åÈëÊı¾İ
 			Node->data=data;
 			Node->next=ptr->next;
 			ptr->next=Node;
-			cout<<"²åÈëÊı¾İÍê³É"<<endl;
+			cout<<"æ’å…¥æ•°æ®å®Œæˆ"<<endl;
 			return true;
 		}		
 		ptr=ptr->next;
 	}
-	cout<<"²éÎŞ´ËÊı"<<endl;
+	cout<<"æŸ¥æ— æ­¤æ•°"<<endl;
 	return false;	 
 } 
-bool deleteList(LinkList *&head,int data){    //É¾³ıÁ´±íÖĞµÄÊı¾İ 
+bool deleteList(LinkList *&head,int data){    //åˆ é™¤é“¾è¡¨ä¸­çš„æ•°æ® 
 	LinkList *ptr=head->next,*temp=head;
 	while(ptr){
 		if(data=ptr->data){
 			temp->next=ptr->next;
-			cout<<"É¾³ı³É¹¦"<<endl;
+			cout<<"åˆ é™¤æˆåŠŸ"<<endl;
 			free(ptr);
 			return true;
 		}
 		temp=ptr;
 		ptr=ptr->next;
 	}
-	cout<<"²éÎŞ´ËÊı"<<endl;
+	cout<<"æŸ¥æ— æ­¤æ•°"<<endl;
 	return false;
 } 
-bool updateList(LinkList *&head,int key,int value){    //¸ü¸ÄÁ´±íÖĞµÄÊı¾İ 
+bool updateList(LinkList *&head,int key,int value){    //æ›´æ”¹é“¾è¡¨ä¸­çš„æ•°æ® 
 	LinkList *temp=head,*ptr=head->next;
 	while(ptr){
 		if(key==ptr->data){
 			ptr->data=value;
-			cout<<"ĞŞ¸ÄÍê³É"<<endl;
+			cout<<"ä¿®æ”¹å®Œæˆ"<<endl;
 			return true;
 		}
 		temp=ptr;
 		ptr=ptr->next;
 	}
-	cout<<"ĞŞ¸ÄÊ§°Ü,Á´±íÖĞ¿ÉÄÜÃ»ÓĞÄúÏëĞŞ¸ÄµÄÊı..."<<endl;
+	cout<<"ä¿®æ”¹å¤±è´¥,é“¾è¡¨ä¸­å¯èƒ½æ²¡æœ‰æ‚¨æƒ³ä¿®æ”¹çš„æ•°..."<<endl;
 	return false; 
 }
-int getLocation(LinkList *&head,int data){     //µÃµ½Êı¾İÔÚÁ´±íÖĞµÄÎ»ÖÃ 
+int getLocation(LinkList *&head,int data){     //å¾—åˆ°æ•°æ®åœ¨é“¾è¡¨ä¸­çš„ä½ç½® 
 	LinkList *ptr=head->next,*temp=head;
 	int i=0;
 	while(ptr){
@@ -105,22 +105,21 @@ int getLocation(LinkList *&head,int data){     //µÃµ½Êı¾İÔÚÁ´±íÖĞµÄÎ»ÖÃ
 		temp=ptr;
 		ptr=ptr->next;
 	}
-	cout<<"²éÎŞ´ËÊı"<<endl;
+	cout<<"æŸ¥æ— æ­¤æ•°"<<endl;
 	return 0;
 }
 
 void reverseList(LinkList *&head){
-	LinkList *pre=head,*ptr=NULL,*cur=pre->next;
-	while(ptr!=NULL){
-		ptr=cur->next;
-		cur->next=pre;
-		pre=cur;
-		cur=ptr;
-	}
+	LinkList *ptr=head->next,*temp=head;
 	head->next=NULL;
-	head=pre;
+	while(ptr!=NULL){
+		temp=ptr->next;
+		ptr->next=head->next;
+		head->next=ptr;
+		ptr=temp;
+	} 
 }
-void destroyList(LinkList *&head){   //Ïú»ÙÁ´±í 
+void destroyList(LinkList *&head){   //é”€æ¯é“¾è¡¨ 
 	LinkList *ptr=head->next;
 	while(ptr){
 		free(head);
@@ -132,48 +131,48 @@ void destroyList(LinkList *&head){   //Ïú»ÙÁ´±í
 int main(){
 	LinkList *head;
 	initList(head);
-	cout<<"³õÊ¼»¯Íê³É£¡"<<endl;
+	cout<<"åˆå§‹åŒ–å®Œæˆï¼"<<endl;
 	head=createList(head);
-	cout<<"´´½¨Á´±íÍê³É"<<endl;
+	cout<<"åˆ›å»ºé“¾è¡¨å®Œæˆ"<<endl;
 	
-	cout<<endl<<"ÊÇ·ñÎª¿Õ£º"<<isEmpty(head)<<endl;
+	cout<<endl<<"æ˜¯å¦ä¸ºç©ºï¼š"<<isEmpty(head)<<endl;
 	
-	cout<<endl<<"Êä³öÁ´±í£º";
+	cout<<endl<<"è¾“å‡ºé“¾è¡¨ï¼š";
 	showList(head);
 	
-	cout<<endl<<"½«ÒªÔÚÁ´±íÖĞ²åÈëÊı¾İ..."<<endl; 
+	cout<<endl<<"å°†è¦åœ¨é“¾è¡¨ä¸­æ’å…¥æ•°æ®..."<<endl; 
 	inseartList(head,7);	 
-	cout<<"Êä³öÁ´±í£º";
+	cout<<"è¾“å‡ºé“¾è¡¨ï¼š";
 	showList(head);
-	cout<<endl<<"ÊÇ·ñÎª¿Õ£º"<<isEmpty(head)<<endl;
+	cout<<endl<<"æ˜¯å¦ä¸ºç©ºï¼š"<<isEmpty(head)<<endl;
 	
-	cout<<endl<<"Òª²éÕÒµÄÊıÔÚÁ´±íÖĞµÄÎ»ÖÃÎª£º"<<getLocation(head,8)<<endl;
+	cout<<endl<<"è¦æŸ¥æ‰¾çš„æ•°åœ¨é“¾è¡¨ä¸­çš„ä½ç½®ä¸ºï¼š"<<getLocation(head,8)<<endl;
 	
-	cout<<endl<<"½«ÒªÉ¾³ıÁ´±íÖĞµÄÊı¾İ..."<<endl; 
+	cout<<endl<<"å°†è¦åˆ é™¤é“¾è¡¨ä¸­çš„æ•°æ®..."<<endl; 
 	deleteList(head,1);
-	cout<<"Êä³öÁ´±í£º";
+	cout<<"è¾“å‡ºé“¾è¡¨ï¼š";
 	showList(head);
 	
-	cout<<endl<<"Òª²éÕÒµÄÊıÔÚÁ´±íÖĞµÄÎ»ÖÃÎª£º"<<getLocation(head,2)<<endl; 
+	cout<<endl<<"è¦æŸ¥æ‰¾çš„æ•°åœ¨é“¾è¡¨ä¸­çš„ä½ç½®ä¸ºï¼š"<<getLocation(head,2)<<endl; 
 	
 	
-	cout<<"ĞŞ¸ÄÊı¾İ...";
+	cout<<"ä¿®æ”¹æ•°æ®...";
 	updateList(head,2,99);
-	cout<<"Êä³öÁ´±í£º";
+	cout<<"è¾“å‡ºé“¾è¡¨ï¼š";
 	showList(head);
 	
-	cout<<endl<<"×·¼ÓÊı¾İ...";
+	cout<<endl<<"è¿½åŠ æ•°æ®...";
 	appendList(head,0);
-	cout<<"Êä³öÁ´±í£º";
+	cout<<"è¾“å‡ºé“¾è¡¨ï¼š";
 	showList(head);
 	
-	cout<<endl<<"Á´±íÄæÖÃ£º";
+	cout<<endl<<"é“¾è¡¨é€†ç½®ï¼š";
 	reverseList(head);
 	showList(head);
 	 
 	destroyList(head);	
-	cout<<endl<<"Ïú»ÙÁ´±íÍê³É"<<endl;
-	cout<<endl<<"ÊÇ·ñÎª¿Õ£º"<<isEmpty(head)<<endl;
+	cout<<endl<<"é”€æ¯é“¾è¡¨å®Œæˆ"<<endl;
+	cout<<endl<<"æ˜¯å¦ä¸ºç©ºï¼š"<<isEmpty(head)<<endl;
 	
 	return 0;
 }
@@ -182,10 +181,10 @@ int main(){
 void Link(LinkList *&L1, LinkList *&L2)
 {
     LinkList *p= L1;
-    while(p->next != NULL)   //ÕÒµ½L1µÄÎ²½Úµã
+    while(p->next != NULL)   //æ‰¾åˆ°L1çš„å°¾èŠ‚ç‚¹
         p = p->next;
-    p->next = L2->next;  //½«L2µÄÊ×¸öÊı¾İ½ÚµãÁ¬½Óµ½L1µÄÎ²½Úµãºó
-    free(L2);   //ÊÍ·ÅµôÒÑ¾­ÎŞÓÃµÄL2µÄÍ·½Úµã
+    p->next = L2->next;  //å°†L2çš„é¦–ä¸ªæ•°æ®èŠ‚ç‚¹è¿æ¥åˆ°L1çš„å°¾èŠ‚ç‚¹å
+    free(L2);   //é‡Šæ”¾æ‰å·²ç»æ— ç”¨çš„L2çš„å¤´èŠ‚ç‚¹
 }
 */
  
