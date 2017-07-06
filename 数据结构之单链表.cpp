@@ -2,22 +2,22 @@
 #include<cstdlib>
 typedef int ElemType;
 using namespace std;
-typedef struct LinkList{
+typedef struct LinkedList{
 	ElemType data;
-	struct LinkList *next;
-}LinkList;
-void initList(LinkList *&head){   //初始化链表 
-	head = new LinkList;
+	struct LinkedList *next;
+}LinkedList;
+void initList(LinkedList *&head){   //初始化链表 
+	head = new LinkedList;
 	head->next=NULL;
 }
 
-LinkList *createList(LinkList *&head){	  //尾插法 
-	LinkList *temp=head,*ptr=head->next;
+LinkedList *createList(LinkedList *&head){	  //尾插法 
+	LinkedList *temp=head,*ptr=head->next;
 	int n;
 	cout<<"请输入要创建多少元素：";
 	cin>>n;
 	for(int i=0;i<n;i++){
-		ptr=new LinkList;
+		ptr=new LinkedList;
 		cin>>ptr->data;
 		temp->next=ptr;
 		temp=ptr;
@@ -25,9 +25,9 @@ LinkList *createList(LinkList *&head){	  //尾插法
 	temp->next=NULL;
 	return head;
 }
-void appendList(LinkList *&head,int data){     //在尾部追加 
-	LinkList *ptr=head->next,*temp;
-	temp = new LinkList;
+void appendList(LinkedList *&head,int data){     //在尾部追加 
+	LinkedList *ptr=head->next,*temp;
+	temp = new LinkedList;
 	while(ptr->next!=NULL){
 		ptr=ptr->next;
 	}
@@ -35,25 +35,25 @@ void appendList(LinkList *&head,int data){     //在尾部追加
 	temp->data=data;
 	temp->next=NULL;
 }
-void showList(LinkList *&head){     //输出链表 
-	LinkList *ptr=head->next;
+void showList(LinkedList *&head){     //输出链表 
+	LinkedList *ptr=head->next;
 	while(ptr){
 		cout<<ptr->data<<"  ";
 		ptr=ptr->next;
 	}
 	cout<<endl;
 }
-bool isEmpty(LinkList *&head){      //判断是否为空 
+bool isEmpty(LinkedList *&head){      //判断是否为空 
 	return (head->next==NULL);
 }
-bool inseartList(LinkList *&head,int data){     //在链表中插入数据 
-	LinkList *ptr=head->next,*Node;
+bool inseartList(LinkedList *&head,int data){     //在链表中插入数据 
+	LinkedList *ptr=head->next,*Node;
 	int n;
 	cout<<endl<<"请输入要在那位数后面插入：";
 	cin>>n; 
 	while(ptr){
 		if(n==ptr->data){
-			Node=new LinkList;
+			Node=new LinkedList;
 			Node->data=data;
 			Node->next=ptr->next;
 			ptr->next=Node;
@@ -65,8 +65,8 @@ bool inseartList(LinkList *&head,int data){     //在链表中插入数据
 	cout<<"查无此数"<<endl;
 	return false;	 
 } 
-bool deleteList(LinkList *&head,int data){    //删除链表中的数据 
-	LinkList *ptr=head->next,*temp=head;
+bool deleteList(LinkedList *&head,int data){    //删除链表中的数据 
+	LinkedList *ptr=head->next,*temp=head;
 	while(ptr){
 		if(data=ptr->data){
 			temp->next=ptr->next;
@@ -80,8 +80,8 @@ bool deleteList(LinkList *&head,int data){    //删除链表中的数据
 	cout<<"查无此数"<<endl;
 	return false;
 } 
-bool updateList(LinkList *&head,int key,int value){    //更改链表中的数据 
-	LinkList *temp=head,*ptr=head->next;
+bool updateList(LinkedList *&head,int key,int value){    //更改链表中的数据 
+	LinkedList *temp=head,*ptr=head->next;
 	while(ptr){
 		if(key==ptr->data){
 			ptr->data=value;
@@ -94,8 +94,8 @@ bool updateList(LinkList *&head,int key,int value){    //更改链表中的数�
 	cout<<"修改失败,链表中可能没有您想修改的数..."<<endl;
 	return false; 
 }
-int getLocation(LinkList *&head,int data){     //得到数据在链表中的位置 
-	LinkList *ptr=head->next,*temp=head;
+int getLocation(LinkedList *&head,int data){     //得到数据在链表中的位置 
+	LinkedList *ptr=head->next,*temp=head;
 	int i=0;
 	while(ptr){
 		i++;
@@ -109,8 +109,8 @@ int getLocation(LinkList *&head,int data){     //得到数据在链表中的位�
 	return 0;
 }
 
-void reverseList(LinkList *&head){
-	LinkList *ptr=head->next,*temp=head;
+void reverseList(LinkedList *&head){
+	LinkedList *ptr=head->next,*temp=head;
 	head->next=NULL;
 	while(ptr!=NULL){
 		temp=ptr->next;
@@ -119,8 +119,8 @@ void reverseList(LinkList *&head){
 		ptr=temp;
 	} 
 }
-void destroyList(LinkList *&head){   //销毁链表 
-	LinkList *ptr=head->next;
+void destroyList(LinkedList *&head){   //销毁链表 
+	LinkedList *ptr=head->next;
 	while(ptr){
 		free(head);
 		head=ptr;
@@ -129,7 +129,7 @@ void destroyList(LinkList *&head){   //销毁链表
 	free(head);
 } 
 int main(){
-	LinkList *head;
+	LinkedList *head;
 	initList(head);
 	cout<<"初始化完成！"<<endl;
 	head=createList(head);
@@ -146,7 +146,7 @@ int main(){
 	showList(head);
 	cout<<endl<<"是否为空："<<isEmpty(head)<<endl;
 	
-	cout<<endl<<"要查找的数在链表中的位置为："<<getLocation(head,8)<<endl;
+	cout<<endl<<"要查找的数在链表中的位置为："<<getLocation(head,5)<<endl;
 	
 	cout<<endl<<"将要删除链表中的数据..."<<endl; 
 	deleteList(head,1);
@@ -162,7 +162,7 @@ int main(){
 	showList(head);
 	
 	cout<<endl<<"追加数据...";
-	appendList(head,0);
+	appendList(head,78);
 	cout<<"输出链表：";
 	showList(head);
 	
@@ -187,24 +187,3 @@ void Link(LinkList *&L1, LinkList *&L2)
     free(L2);   //释放掉已经无用的L2的头节点
 }
 */
- 
-
-
- 
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
